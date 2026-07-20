@@ -123,13 +123,13 @@
       </div>
     </div>
     <div class="market-map">
-      <div class="country-maps">
-        <a class="map-tile active" href="/ar/markets.html#saudi" data-market="saudi" aria-label="تفاصيل السوق السعودي"><img src="/assets/maps/saudi-arabia.svg" alt="خريطة السعودية"><svg class="ph-icon ph-icon--tile" viewBox="0 0 256 256" aria-hidden="true"><use href="/assets/icons/phosphor.svg#ph-duotone-map-pin-line"></use></svg><span>KSA</span></a>
-        <a class="map-tile" href="/ar/markets.html#uae" data-market="uae" aria-label="تفاصيل سوق الإمارات"><img src="/assets/maps/united-arab-emirates.svg" alt="خريطة الإمارات"><svg class="ph-icon ph-icon--tile" viewBox="0 0 256 256" aria-hidden="true"><use href="/assets/icons/phosphor.svg#ph-duotone-map-pin-line"></use></svg><span>UAE</span></a>
-        <a class="map-tile" href="/ar/markets.html#egypt" data-market="egypt" aria-label="تفاصيل سوق مصر"><img src="/assets/maps/egypt.svg" alt="خريطة مصر"><svg class="ph-icon ph-icon--tile" viewBox="0 0 256 256" aria-hidden="true"><use href="/assets/icons/phosphor.svg#ph-duotone-map-pin-line"></use></svg><span>EGY</span></a>
-        <a class="map-tile" href="/ar/markets.html#syria" data-market="syria" aria-label="تفاصيل سوق سوريا"><img src="/assets/maps/syria.svg" alt="خريطة سوريا"><svg class="ph-icon ph-icon--tile" viewBox="0 0 256 256" aria-hidden="true"><use href="/assets/icons/phosphor.svg#ph-duotone-map-pin-line"></use></svg><span>SYR</span></a>
+      <div class="country-maps" role="tablist" aria-label="اختر سوقاً">
+        <a class="map-tile active" href="/ar/markets.html#saudi" data-market="saudi" role="tab" aria-selected="true" aria-controls="market-preview" aria-label="عرض سوق السعودية"><img src="/assets/maps/saudi-arabia.svg" alt=""><span>KSA</span></a>
+        <a class="map-tile" href="/ar/markets.html#uae" data-market="uae" role="tab" aria-selected="false" aria-controls="market-preview" aria-label="عرض سوق الإمارات"><img src="/assets/maps/united-arab-emirates.svg" alt=""><span>UAE</span></a>
+        <a class="map-tile" href="/ar/markets.html#egypt" data-market="egypt" role="tab" aria-selected="false" aria-controls="market-preview" aria-label="عرض سوق مصر"><img src="/assets/maps/egypt.svg" alt=""><span>EGY</span></a>
+        <a class="map-tile" href="/ar/markets.html#syria" data-market="syria" role="tab" aria-selected="false" aria-controls="market-preview" aria-label="عرض سوق سوريا"><img src="/assets/maps/syria.svg" alt=""><span>SYR</span></a>
       </div>
-      <div class="map-label"><small>السوق المحدد</small><strong id="map-name">السعودية</strong><p id="map-copy">تسجيل المنتجات لدى هيئة الغذاء والدواء، منصة اعتماد والمناقصات الحكومية، التصنيع المحلي، والتوزيع في كل المملكة.</p></div>
+      <div class="map-label" id="market-preview" role="tabpanel" aria-live="polite"><small>السوق المحدد</small><strong id="map-name">السعودية</strong><p id="map-copy">تسجيل المنتجات لدى هيئة الغذاء والدواء، منصة اعتماد والمناقصات الحكومية، التصنيع المحلي، والتوزيع في كل المملكة.</p><a class="market-read-more" id="market-read-more" href="/ar/markets.html#saudi"><span>اقرأ المزيد</span><i aria-hidden="true"></i></a></div>
     </div>
   </div>
 </section>

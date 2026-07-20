@@ -123,13 +123,13 @@
       </div>
     </div>
     <div class="market-map">
-      <div class="country-maps">
-        <a class="map-tile active" href="/markets.html#saudi" data-market="saudi" aria-label="View Saudi Arabia market details"><img src="/assets/maps/saudi-arabia.svg" alt="Map of Saudi Arabia"><svg class="ph-icon ph-icon--tile" viewBox="0 0 256 256" aria-hidden="true"><use href="/assets/icons/phosphor.svg#ph-duotone-map-pin-line"></use></svg><span>KSA</span></a>
-        <a class="map-tile" href="/markets.html#uae" data-market="uae" aria-label="View United Arab Emirates market details"><img src="/assets/maps/united-arab-emirates.svg" alt="Map of the United Arab Emirates"><svg class="ph-icon ph-icon--tile" viewBox="0 0 256 256" aria-hidden="true"><use href="/assets/icons/phosphor.svg#ph-duotone-map-pin-line"></use></svg><span>UAE</span></a>
-        <a class="map-tile" href="/markets.html#egypt" data-market="egypt" aria-label="View Egypt market details"><img src="/assets/maps/egypt.svg" alt="Map of Egypt"><svg class="ph-icon ph-icon--tile" viewBox="0 0 256 256" aria-hidden="true"><use href="/assets/icons/phosphor.svg#ph-duotone-map-pin-line"></use></svg><span>EGY</span></a>
-        <a class="map-tile" href="/markets.html#syria" data-market="syria" aria-label="View Syria market details"><img src="/assets/maps/syria.svg" alt="Map of Syria"><svg class="ph-icon ph-icon--tile" viewBox="0 0 256 256" aria-hidden="true"><use href="/assets/icons/phosphor.svg#ph-duotone-map-pin-line"></use></svg><span>SYR</span></a>
+      <div class="country-maps" role="tablist" aria-label="Choose a market">
+        <a class="map-tile active" href="/markets.html#saudi" data-market="saudi" role="tab" aria-selected="true" aria-controls="market-preview" aria-label="Preview Saudi Arabia"><img src="/assets/maps/saudi-arabia.svg" alt=""><span>KSA</span></a>
+        <a class="map-tile" href="/markets.html#uae" data-market="uae" role="tab" aria-selected="false" aria-controls="market-preview" aria-label="Preview United Arab Emirates"><img src="/assets/maps/united-arab-emirates.svg" alt=""><span>UAE</span></a>
+        <a class="map-tile" href="/markets.html#egypt" data-market="egypt" role="tab" aria-selected="false" aria-controls="market-preview" aria-label="Preview Egypt"><img src="/assets/maps/egypt.svg" alt=""><span>EGY</span></a>
+        <a class="map-tile" href="/markets.html#syria" data-market="syria" role="tab" aria-selected="false" aria-controls="market-preview" aria-label="Preview Syria"><img src="/assets/maps/syria.svg" alt=""><span>SYR</span></a>
       </div>
-      <div class="map-label"><small>SELECTED MARKET</small><strong id="map-name">Saudi Arabia</strong><p id="map-copy">SFDA product registration, Etimad and government tenders, local manufacturing, and nationwide distribution.</p></div>
+      <div class="map-label" id="market-preview" role="tabpanel" aria-live="polite"><small>SELECTED MARKET</small><strong id="map-name">Saudi Arabia</strong><p id="map-copy">SFDA product registration, Etimad and government tenders, local manufacturing, and nationwide distribution.</p><a class="market-read-more" id="market-read-more" href="/markets.html#saudi"><span>Read more</span><i aria-hidden="true"></i></a></div>
     </div>
   </div>
 </section>

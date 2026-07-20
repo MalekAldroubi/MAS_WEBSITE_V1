@@ -38,8 +38,10 @@ const T = isAr
       dropdownTitle: 'من الدخول إلى التشغيل.',
       dropdownText: 'خمس خدمات تُدخل منتجك إلى السوق.',
       menu: 'القائمة',
+      menuEyebrow: 'استكشف ماس',
+      menuContactHint: 'هل أنت مستعد لدخول سوقك القادم؟',
       openMenu: 'افتح القائمة',
-      closeMenu: 'أغلق القائمة',
+      closeMenu: 'إغلاق قائمة التنقل',
       langSwitch: 'English',
       langSwitchLang: 'en',
       langSwitchDir: 'ltr',
@@ -105,8 +107,10 @@ const T = isAr
       dropdownTitle: 'From entry to operations.',
       dropdownText: 'Five services that move your product into the market.',
       menu: 'MENU',
+      menuEyebrow: 'EXPLORE MAS',
+      menuContactHint: 'Ready to enter your next market?',
       openMenu: 'Open menu',
-      closeMenu: 'Close menu',
+      closeMenu: 'Close navigation',
       langSwitch: 'العربية',
       langSwitchLang: 'ar',
       langSwitchDir: 'rtl',
@@ -184,7 +188,10 @@ const fieldMenuLinks = T.fields
   .join('');
 
 const mobileFieldLinks = T.fields
-  .map(([label, slug]) => `<a href="${P}/fields/${slug}.html">${label}</a>`)
+  .map(
+    ([label, slug], index) =>
+      `<a href="${P}/fields/${slug}.html"><span>0${index + 1}</span><strong>${label}</strong><i class="mobile-link-rule" aria-hidden="true"></i></a>`,
+  )
   .join('');
 
 const header = document.querySelector('#header');
@@ -213,41 +220,87 @@ if (header) {
     <div class="nav-actions">
       ${langSwitchHTML}
       <a class="nav-contact" href="${P}/contact.html">${T.navContact}</a>
-      <button class="menu-button" aria-expanded="false" aria-label="${T.openMenu}"><i></i><i></i></button>
+      <button class="menu-button" aria-expanded="false" aria-label="${T.openMenu}">
+        <span class="menu-button-label">${T.menu}</span>
+        <span class="menu-button-glyph" aria-hidden="true"><i></i><i></i></span>
+      </button>
     </div>`;
 }
 
 const mobile = document.querySelector('#mobile-menu');
 if (mobile) {
   mobile.className = 'mobile-menu';
+  mobile.setAttribute('aria-hidden', 'true');
   mobile.innerHTML = `
-    <div><span>${T.menu}</span><button aria-label="${T.closeMenu}">${phIcon('x', { className: 'ph-icon--menu', size: 24 })}</button></div>
-    <nav>
-      <a href="${P}/">${T.navHome}</a>
-      <details>
-        <summary>${T.navServices} <span>${phIcon('caret-down', { className: 'ph-icon--menu', size: 20 })}</span></summary>
-        ${mobileFieldLinks}
-      </details>
-      <a href="${P}/markets.html">${T.navMarkets}</a>
-      <a href="${P}/about.html">${T.navAbout}</a>
-      <a href="${P}/contact.html">${T.navContact}</a>
-    </nav>
-    ${langSwitchHTML}`;
+    <div class="mobile-menu-shell">
+      <header class="mobile-menu-head">
+        <a class="mobile-menu-brand" href="${P}/" aria-label="MAS International Care">
+          <img src="${logoUrl}" alt="">
+          <span><small>${T.menuEyebrow}</small><strong>MAS</strong></span>
+        </a>
+        <button class="mobile-menu-close" type="button" aria-label="${T.closeMenu}">
+          <span>${T.closeMenu}</span>
+        </button>
+      </header>
+      <div class="mobile-menu-body">
+        <p class="mobile-menu-kicker"><span>01</span>${T.menu}</p>
+        <nav class="mobile-primary-nav" aria-label="${T.menu}">
+          <a href="${P}/"><span>01</span><strong>${T.navHome}</strong><i class="mobile-link-rule" aria-hidden="true"></i></a>
+          <details>
+            <summary><span>02</span><strong>${T.navServices}</strong><i class="mobile-accordion-mark" aria-hidden="true"><b></b><b></b></i></summary>
+            <div class="mobile-service-links">${mobileFieldLinks}</div>
+          </details>
+          <a href="${P}/markets.html"><span>03</span><strong>${T.navMarkets}</strong><i class="mobile-link-rule" aria-hidden="true"></i></a>
+          <a href="${P}/about.html"><span>04</span><strong>${T.navAbout}</strong><i class="mobile-link-rule" aria-hidden="true"></i></a>
+        </nav>
+      </div>
+      <footer class="mobile-menu-footer">
+        <small>${T.menuContactHint}</small>
+        <div class="mobile-menu-actions">
+          <a href="${P}/contact.html"><strong>${T.navContact}</strong><span>${phIcon('paper-plane-tilt', { className: 'ph-icon--menu-cta', size: 20 })}</span></a>
+          ${langSwitchHTML}
+        </div>
+      </footer>
+    </div>`;
 }
 
 const menuButton = document.querySelector('.menu-button');
-const menuClose = document.querySelector('.mobile-menu > div button');
+const menuClose = document.querySelector('.mobile-menu-close');
+
+const normalizedPath = (value) => value.replace(/index\.html$/, '').replace(/\/$/, '') || '/';
+mobile?.querySelectorAll('a[href]').forEach((link) => {
+  if (normalizedPath(new URL(link.href).pathname) === normalizedPath(location.pathname)) {
+    link.setAttribute('aria-current', 'page');
+    link.closest('details')?.setAttribute('open', '');
+  }
+});
 
 function setMenuOpen(open) {
   mobile?.classList.toggle('open', open);
   document.body.classList.toggle('locked', open);
   menuButton?.setAttribute('aria-expanded', String(open));
+  mobile?.setAttribute('aria-hidden', String(!open));
+  if (open) menuClose?.focus();
+  else if (document.activeElement && mobile?.contains(document.activeElement)) menuButton?.focus();
 }
 
 menuButton?.addEventListener('click', () => setMenuOpen(true));
 menuClose?.addEventListener('click', () => setMenuOpen(false));
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') setMenuOpen(false);
+  if (event.key !== 'Tab' || !mobile?.classList.contains('open')) return;
+  const focusable = [...mobile.querySelectorAll('a[href], button, summary')].filter(
+    (element) => element.matches('summary') || !element.closest('details:not([open])'),
+  );
+  const first = focusable[0];
+  const last = focusable.at(-1);
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last?.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first?.focus();
+  }
 });
 
 const footer = document.querySelector('#footer');
@@ -325,21 +378,32 @@ const previewMarket = (element) => {
     const selected = maps[element.dataset.market];
     if (!selected) return;
 
-    marketControls.forEach((market) =>
-      market.classList.toggle('active', market.dataset.market === element.dataset.market),
-    );
+    marketControls.forEach((market) => {
+      const isSelected = market.dataset.market === element.dataset.market;
+      market.classList.toggle('active', isSelected);
+      if (market.matches('[role="tab"]')) market.setAttribute('aria-selected', String(isSelected));
+    });
 
     const mapName = document.querySelector('#map-name');
     const mapCopy = document.querySelector('#map-copy');
+    const mapPreview = document.querySelector('#market-preview');
+    const readMore = document.querySelector('#market-read-more');
     if (mapName && mapCopy) {
       mapName.textContent = selected[0];
       mapCopy.textContent = selected[1];
     }
+    if (mapPreview) mapPreview.setAttribute('aria-label', selected[0]);
+    if (readMore) readMore.href = element.getAttribute('href');
 };
 
 marketControls.forEach((element) => {
   element.addEventListener('mouseenter', () => previewMarket(element));
   element.addEventListener('focus', () => previewMarket(element));
+  element.addEventListener('click', (event) => {
+    if (!element.matches('.markets .map-tile') || !window.matchMedia('(max-width: 650px)').matches) return;
+    event.preventDefault();
+    previewMarket(element);
+  });
 });
 
 const observer = new IntersectionObserver(
