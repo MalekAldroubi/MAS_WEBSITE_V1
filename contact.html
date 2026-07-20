@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Contact MAS International Care | Get a Market Assessment</title>
+    <meta name="description" content="Tell us your product and target market. MAS replies within one business day with an honest assessment and a clear next step: local agency, SFDA registration, tenders, distribution, or operations.">
+    <link rel="preconnect" href="https://challenges.cloudflare.com">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body class="light-header contact-page">
+    <a class="skip" href="#content">Skip to content</a>
+    <header id="header"></header>
+    <div id="mobile-menu"></div>
+
+    <main id="content">
+      <section class="contact-stage" aria-labelledby="contact-title">
+        <img class="contact-stage-bg" src="/assets/commercial.webp" width="978" height="1632" alt="Regional healthcare partners discussing a medical market opportunity">
+        <div class="contact-stage-overlay" aria-hidden="true"></div>
+
+        <div class="contact-stage-inner">
+          <form id="contact-form" class="contact-form contact-form-panel reveal" action="/api/contact.php" method="post">
+            <div class="contact-form-heading">
+              <div>
+                <p>MAS International Care</p>
+                <h2>Tell us about your product.</h2>
+              </div>
+              <span class="contact-form-icon" aria-hidden="true">
+                <svg class="ph-icon ph-icon--heading" viewBox="0 0 256 256" aria-hidden="true"><use href="/assets/icons/phosphor.svg#ph-duotone-chat-text"></use></svg>
+              </span>
+            </div>
+
+            <div class="bot-trap" aria-hidden="true">
+              <label for="company-website">Company website</label>
+              <input id="company-website" name="company_website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Full name <span>*</span></label>
+                <input id="name" name="name" required autocomplete="name" placeholder="Your name">
+              </div>
+              <div class="field">
+                <label for="company">Company</label>
+                <input id="company" name="company" autocomplete="organization" placeholder="Company name">
+              </div>
+              <div class="field">
+                <label for="email">Work email <span>*</span></label>
+                <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@company.com">
+              </div>
+              <div class="field">
+                <label for="market">Target market</label>
+                <select id="market" name="market">
+                  <option>Saudi Arabia</option>
+                  <option>United Arab Emirates</option>
+                  <option>Egypt</option>
+                  <option>Syria</option>
+                  <option>Multiple markets</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="interest">What do you need?</label>
+                <select id="interest" name="interest">
+                  <option>Market entry &amp; local agency</option>
+                  <option>Product registration &amp; government tenders</option>
+                  <option>Distribution, sales &amp; investors</option>
+                  <option>Healthcare facilities &amp; operations</option>
+                  <option>Local manufacturing</option>
+                  <option>Not sure yet (advise me)</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="message">What are you planning? <span>*</span></label>
+                <textarea id="message" name="message" required rows="4" placeholder="Example: We make surgical instruments in Germany and want to sell to hospitals in Saudi Arabia."></textarea>
+              </div>
+            </div>
+
+            <div class="turnstile-verification">
+              <div id="turnstile-widget" class="turnstile-widget" aria-label="Cloudflare security verification"></div>
+              <p><svg class="ph-icon ph-icon--small" viewBox="0 0 256 256" aria-hidden="true"><use href="/assets/icons/phosphor.svg#ph-duotone-shield-check"></use></svg>Protected by Cloudflare Turnstile</p>
+            </div>
+            <p class="form-error" role="alert" aria-live="assertive" hidden></p>
+
+            <button class="submit" type="submit" disabled>
+              <span>Send enquiry</span>
+              <svg class="ph-icon ph-icon--action" viewBox="0 0 256 256" aria-hidden="true"><use href="/assets/icons/phosphor.svg#ph-duotone-paper-plane-tilt"></use></svg>
+            </button>
+            <p class="contact-form-note">We only use your information to respond to this enquiry.</p>
+            <p class="form-success" role="status" aria-live="polite">Thank you. Your enquiry has been received.</p>
+          </form>
+
+          <div class="contact-stage-copy reveal">
+            <div class="contact-stage-tag"><i></i>Your local partner in the Middle East</div>
+            <h1 id="contact-title">Let’s get your product <em>into the market.</em></h1>
+            <p>Tell us what you sell and which country you’re targeting. We’ll reply with an honest read on the opportunity, and exactly what your first step should be.</p>
+
+            <div class="contact-highlights">
+              <article>
+                <span aria-hidden="true"><svg class="ph-icon ph-icon--proof" viewBox="0 0 256 256" aria-hidden="true"><use href="/assets/icons/phosphor.svg#ph-duotone-clock"></use></svg></span>
+                <div><h2>Reply within one business day</h2><p>A real person from our team reviews every enquiry. No automated responses.</p></div>
+              </article>
+              <article>
+                <span aria-hidden="true"><svg class="ph-icon ph-icon--proof" viewBox="0 0 256 256" aria-hidden="true"><use href="/assets/icons/phosphor.svg#ph-duotone-compass"></use></svg></span>
+                <div><h2>A concrete next step</h2><p>Specific to your product, your market, and where you are today, not a generic pitch.</p></div>
+              </article>
+            </div>
+
+            <div class="contact-direct">
+              <span class="contact-direct-icon" aria-hidden="true"><svg class="ph-icon ph-icon--direct" viewBox="0 0 256 256" aria-hidden="true"><use href="/assets/icons/phosphor.svg#ph-duotone-lock-simple"></use></svg></span>
+              <div><small>Protected communication</small><strong>Use our secure enquiry form</strong></div>
+              <a class="contact-direct-action" href="#contact-form" aria-label="Go to the secure enquiry form">
+                <svg class="ph-icon ph-icon--action" viewBox="0 0 256 256" aria-hidden="true"><use href="/assets/icons/phosphor.svg#ph-duotone-arrow-square-out"></use></svg>
+              </a>
+            </div>
+
+            <div class="contact-markets" aria-label="MAS regional presence">
+              <span>Saudi Arabia</span><span>UAE</span><span>Egypt</span><span>Syria</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="footer"></footer>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+{"scripts":{"dev":"vite --host 0.0.0.0","build":"vite build"},"devDependencies":{"vite":"^7.3.6"},"dependencies":{"@phosphor-icons/core":"^2.1.1"}}

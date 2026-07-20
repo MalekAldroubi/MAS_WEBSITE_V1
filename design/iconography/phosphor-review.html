@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Phosphor Icons — MAS Selection Review</title>
+  <style>
+    :root{--ink:#211d1a;--muted:#706861;--paper:#f5f1e9;--sheet:#fffdfa;--line:#d9d1c6;--accent:#9a5b2e;--dark:#211b17}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 Arial,sans-serif}.wrap{width:min(1380px,92vw);margin:auto}.hero{padding:82px 0 64px;display:grid;grid-template-columns:1.3fr .7fr;gap:8vw;align-items:end}.eyebrow,.index,.badge{font-size:10px;letter-spacing:.14em;text-transform:uppercase}.eyebrow{color:var(--accent)}h1{font:400 clamp(60px,9vw,132px)/.8 Georgia,serif;letter-spacing:-.065em;margin:22px 0 0}.hero-copy{color:var(--muted);font-size:17px;max-width:520px}.hero-copy strong{color:var(--ink)}.toolbar{position:sticky;z-index:5;top:0;background:rgba(245,241,233,.94);backdrop-filter:blur(12px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.toolbar .wrap{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px}.weights{display:flex;gap:7px;flex-wrap:wrap}.weights button{min-height:38px;padding:0 14px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}.weights button.active{background:var(--dark);border-color:var(--dark);color:#fff}.toolbar p{margin:0;color:var(--muted);font-size:12px}.section{padding:85px 0}.section-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:40px}.section-head h2{font:400 clamp(38px,5vw,65px)/.95 Georgia,serif;margin:0}.section-head p{color:var(--muted);max-width:560px;margin:0}.semantic-grid{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}.semantic{padding:26px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--sheet)}.semantic-head{display:flex;justify-content:space-between;gap:20px;margin-bottom:24px}.semantic h3{font:400 24px Georgia,serif;margin:4px 0 0}.semantic .index{color:var(--accent)}.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.choice{position:relative;min-height:175px;padding:18px 14px;background:#f4f0e9;border:1px solid transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.choice.recommended{background:#eee5d9;border-color:#c9b49b}.choice img{width:58px;height:58px;margin-bottom:18px}.choice strong{font-size:12px}.choice small{color:var(--muted);font-size:10px;margin-top:3px}.badge{position:absolute;top:8px;right:8px;color:var(--accent);font-size:7px}.utility{background:var(--dark);color:#fff}.utility .section-head p{color:#afa49b}.utility-grid{display:grid;grid-template-columns:repeat(8,1fr);border-top:1px solid #493e37;border-left:1px solid #493e37}.utility-card{min-height:170px;border-right:1px solid #493e37;border-bottom:1px solid #493e37;display:flex;flex-direction:column;align-items:center;justify-content:center}.utility-card img{width:42px;height:42px;filter:invert(93%) sepia(11%) saturate(421%) hue-rotate(345deg) brightness(103%);margin-bottom:18px}.utility-card span{font-size:11px;color:#c5bab2}.weight-proof{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}.proof{min-height:260px;background:var(--sheet);border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center}.proof img{width:82px;height:82px}.proof strong{margin-top:25px;font:400 20px Georgia,serif}.proof small{color:var(--muted)}footer{padding:50px 0;background:#e8e0d5;color:var(--muted)}footer .wrap{display:flex;justify-content:space-between;gap:30px}footer p{max-width:720px;margin:0}footer a{color:var(--ink)}@media(max-width:900px){.hero,.section-head{grid-template-columns:1fr}.semantic-grid{grid-template-columns:1fr}.utility-grid{grid-template-columns:repeat(4,1fr)}.weight-proof{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.toolbar .wrap{padding:12px 0;display:block}.toolbar p{margin-top:8px}.choices{grid-template-columns:1fr}.choice{min-height:145px}.utility-grid{grid-template-columns:repeat(2,1fr)}.hero{padding-top:55px}footer .wrap{display:block}}
+  </style>
+</head>
+<body>
+  <header class="hero wrap">
+    <div><span class="eyebrow">UI UX Pro Max / Phosphor catalog</span><h1>Ready-made<br>icon options.</h1></div>
+    <p class="hero-copy"><strong>These are the real Phosphor SVGs.</strong> No paths have been redrawn or modified. Each website meaning has three options; the warm card marks my recommended choice.</p>
+  </header>
+
+  <div class="toolbar"><div class="wrap"><div class="weights" aria-label="Icon weight"><button data-weight="thin">Thin</button><button class="active" data-weight="light">Light</button><button data-weight="regular">Regular</button><button data-weight="duotone">Duotone</button></div><p id="weight-note">Showing Light weight — recommended for the MAS visual tone.</p></div></div>
+
+  <main>
+    <section class="section wrap">
+      <header class="section-head"><h2>Services and capabilities</h2><p>Three semantically credible choices for every major subject on the website. “Recommended” means clearest at typical card size while preserving a refined tone.</p></header>
+      <div class="semantic-grid" id="semantic-grid"></div>
+    </section>
+
+    <section class="section utility">
+      <div class="wrap"><header class="section-head"><h2>Interface essentials</h2><p>Controls should use familiar symbols. These need no custom interpretation and should remain visually quieter than service icons.</p></header><div class="utility-grid" id="utility-grid"></div></div>
+    </section>
+
+    <section class="section wrap">
+      <header class="section-head"><h2>One icon, four weights</h2><p>Light feels most editorial. Regular is safer at small sizes. Thin is delicate and should remain above 32 px. Duotone adds hierarchy but is less restrained.</p></header>
+      <div class="weight-proof" id="weight-proof"></div>
+    </section>
+  </main>
+
+  <footer><div class="wrap"><p>The UI UX Pro Max package contains a 100-icon recommendation catalog that points to Phosphor as its primary library. This review uses the official SVG assets from <code>@phosphor-icons/core</code>.</p><a href="https://phosphoricons.com/">Phosphor Icons ↗</a></div></footer>
+
+  <script>
+    const base='../../node_modules/@phosphor-icons/core/assets';
+    const groups=[
+      ['Market entry',['door-open','globe-hemisphere-east','sign-in']],
+      ['Product registration',['file-text','seal-check','stamp']],
+      ['Government tenders',['bank','gavel','briefcase']],
+      ['Distribution',['package','shipping-container','share-network']],
+      ['Sales growth',['trend-up','chart-line-up','chart-bar']],
+      ['Partnerships',['handshake','users-three','circles-three']],
+      ['Investment',['hand-coins','coins','piggy-bank']],
+      ['Manufacturing',['factory','warehouse','gear-six']],
+      ['Healthcare facilities',['hospital','first-aid-kit','buildings']],
+      ['Operations',['sliders-horizontal','gear-fine','strategy']],
+      ['Quality assurance',['seal-check','shield-check','certificate']],
+      ['Market research',['magnifying-glass','file-magnifying-glass','chart-scatter']],
+      ['Localization',['map-pin-area','map-trifold','map-pin-line']],
+      ['Multi-market coverage',['globe','network','share-network']],
+      ['Contact',['chat-text','envelope','paper-plane-tilt']],
+      ['Launch',['rocket-launch','paper-plane-tilt','arrow-up-right']]
+    ];
+    const utilities=[['arrow-right','Continue'],['arrow-square-out','External'],['caret-down','Expand'],['plus','Add'],['x','Close'],['clock','Response'],['lock-simple','Secure'],['envelope','Email']];
+    const labels={
+      'door-open':'Door Open','globe-hemisphere-east':'Globe Hemisphere','sign-in':'Sign In','file-text':'File Text','seal-check':'Seal Check','stamp':'Stamp','bank':'Bank','gavel':'Gavel','briefcase':'Briefcase','package':'Package','shipping-container':'Shipping Container','share-network':'Share Network','trend-up':'Trend Up','chart-line-up':'Chart Line Up','chart-bar':'Chart Bar','handshake':'Handshake','users-three':'Users Three','circles-three':'Circles Three','hand-coins':'Hand Coins','coins':'Coins','piggy-bank':'Piggy Bank','factory':'Factory','warehouse':'Warehouse','gear-six':'Gear Six','hospital':'Hospital','first-aid-kit':'First Aid Kit','buildings':'Buildings','sliders-horizontal':'Sliders','gear-fine':'Gear Fine','strategy':'Strategy','shield-check':'Shield Check','certificate':'Certificate','magnifying-glass':'Magnifying Glass','file-magnifying-glass':'File Search','chart-scatter':'Chart Scatter','map-pin-area':'Map Pin Area','map-trifold':'Map Trifold','map-pin-line':'Map Pin Line','globe':'Globe','network':'Network','chat-text':'Chat Text','envelope':'Envelope','paper-plane-tilt':'Paper Plane','rocket-launch':'Rocket Launch','arrow-up-right':'Arrow Up Right'
+    };
+    const src=(name,weight)=>`${base}/${weight}/${name}${weight==='regular'?'':`-${weight}`}.svg`;
+    let currentWeight='light';
+    const render=()=>{
+      document.querySelector('#semantic-grid').innerHTML=groups.map(([title,icons],i)=>`<article class="semantic"><div class="semantic-head"><div><span class="index">${String(i+1).padStart(2,'0')}</span><h3>${title}</h3></div></div><div class="choices">${icons.map((name,j)=>`<div class="choice ${j===0?'recommended':''}">${j===0?'<span class="badge">Recommended</span>':''}<img width="58" height="58" src="${src(name,currentWeight)}" alt=""><strong>${labels[name]||name}</strong><small>Phosphor ${currentWeight}</small></div>`).join('')}</div></article>`).join('');
+      document.querySelector('#utility-grid').innerHTML=utilities.map(([name,label])=>`<div class="utility-card"><img width="42" height="42" src="${src(name,currentWeight)}" alt=""><span>${label}</span></div>`).join('');
+    };
+    document.querySelectorAll('[data-weight]').forEach(button=>button.addEventListener('click',()=>{currentWeight=button.dataset.weight;document.querySelectorAll('[data-weight]').forEach(b=>b.classList.toggle('active',b===button));document.querySelector('#weight-note').textContent=`Showing ${currentWeight[0].toUpperCase()+currentWeight.slice(1)} weight${currentWeight==='light'?' — recommended for the MAS visual tone.':'.'}`;render()}));
+    const proofIcon='handshake';
+    document.querySelector('#weight-proof').innerHTML=['thin','light','regular','duotone'].map(weight=>`<div class="proof"><img width="82" height="82" src="${src(proofIcon,weight)}" alt="Handshake in ${weight} weight"><strong>${weight[0].toUpperCase()+weight.slice(1)}</strong><small>Phosphor ${weight}</small></div>`).join('');
+    render();
+  </script>
+</body>
+</html>
