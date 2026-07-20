@@ -462,3 +462,25 @@ h1,h2,.cta h2{font-family:"Cormorant Garamond",Georgia,serif}
 [dir=rtl] .field-next a:hover i{transform:scaleX(-1) translateY(-3px)}
 
 @media(max-width:650px){.field-card>.ph-icon--feature{width:54px;height:54px}.image-card>.ph-icon--feature{margin:22px 22px 0 auto}.process-visual>.ph-icon--process{width:92px;height:92px}.map-tile>.ph-icon--tile{width:25px;height:25px}}
+
+/* ===== Company registration trust signal ===== */
+.footer-registration{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 7px}
+.footer-registration b{color:#d8c7b8;font-weight:500;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.company-identity{padding:0 6vw;background:var(--brown);color:#fff}
+.company-identity-inner{max-width:1400px;margin:0 auto;padding:34px 0 38px;border-top:1px solid rgba(222,197,159,.22);display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:end}
+.company-identity-inner>div{display:flex;flex-direction:column;gap:8px}
+.company-identity-inner>div>span{color:var(--sand);font-size:9px;letter-spacing:.16em;text-transform:uppercase}
+.company-identity-inner>div>strong{font:500 clamp(22px,2.2vw,32px)/1.2 "Cormorant Garamond",Georgia,serif;letter-spacing:-.025em}
+.company-identity dl{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:0}
+.company-identity dl>div{padding-inline-start:20px;border-inline-start:1px solid rgba(222,197,159,.24)}
+.company-identity dt{margin-bottom:5px;color:#9f9188;font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.company-identity dd{margin:0;color:#f4eee8;font-size:14px}
+.company-identity dd[dir=ltr]{font-variant-numeric:tabular-nums;letter-spacing:.06em}
+[dir=rtl] .company-identity-inner>div>strong{font-family:"Thmanyah Serif Text",serif;letter-spacing:0}
+
+@media(max-width:650px){
+  .company-identity-inner{grid-template-columns:1fr;gap:26px;padding:28px 0 32px}
+  .company-identity dl{grid-template-columns:1fr;gap:16px}
+  .company-identity dl>div{padding-inline-start:14px}
+  .company-identity-inner>div>strong{font-size:25px}
+}

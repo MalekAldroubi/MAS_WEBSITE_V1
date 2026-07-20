@@ -72,6 +72,9 @@ const T = isAr
       footerMarkets: 'الأسواق',
       footerAbout: 'من نحن',
       footerColContact: 'تواصل',
+      legalCompanyName: 'شركة ماس إنترناشونال كير',
+      legalJurisdiction: 'مسجلة في المملكة العربية السعودية',
+      unifiedNumber: 'الرقم الوطني الموحد',
       footerCountries: 'السعودية · الإمارات · مصر · سوريا',
       footerEnquiry: 'أرسل رسالة آمنة',
       footerRights: 'جميع الحقوق محفوظة',
@@ -136,6 +139,9 @@ const T = isAr
       footerMarkets: 'Markets',
       footerAbout: 'About MAS',
       footerColContact: 'Contact',
+      legalCompanyName: 'MAS International Care Company',
+      legalJurisdiction: 'Registered in the Kingdom of Saudi Arabia',
+      unifiedNumber: 'Unified National Number',
       footerCountries: 'Saudi Arabia · UAE · Egypt · Syria',
       footerEnquiry: 'Send a secure enquiry',
       footerRights: 'All rights reserved',
@@ -297,7 +303,9 @@ if (footer) {
         </div>
         <div class="footer-column footer-contact">
           <h3>${T.footerColContact}</h3>
-          <p>MAS International Care</p>
+          <p>${T.legalCompanyName}</p>
+          <span>${T.legalJurisdiction}</span>
+          <span class="footer-registration">${T.unifiedNumber} <b dir="ltr">7054732784</b></span>
           <span>${T.footerCountries}</span>
           <a class="footer-contact-link" href="${P}/contact.html">${phIcon('lock-simple', { className: 'ph-icon--small', size: 16 })}${T.footerEnquiry}</a>
         </div>
