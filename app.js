@@ -1,4 +1,30 @@
 import logoUrl from './assets/mas-logo.svg';
+import blueLogoUrl from './assets/mas-logo-blue.svg';
+import greenLogoUrl from './assets/mas-logo-green.svg';
+
+const THEME_STORAGE_KEY = 'mas-color-theme';
+const THEME_ORDER = ['original', 'blue', 'green'];
+const normalizeTheme = (value) => (THEME_ORDER.includes(value) ? value : null);
+const themeFromUrl = normalizeTheme(new URLSearchParams(location.search).get('theme'));
+let savedTheme = null;
+
+try {
+  savedTheme = normalizeTheme(localStorage.getItem(THEME_STORAGE_KEY));
+} catch {
+  // The theme still works when storage is blocked by browser privacy settings.
+}
+
+let activeTheme = themeFromUrl || savedTheme || normalizeTheme(document.documentElement.dataset.theme) || 'original';
+
+document.documentElement.dataset.theme = activeTheme;
+
+if (themeFromUrl) {
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, themeFromUrl);
+  } catch {
+    // A shareable ?theme= URL remains available without persistent storage.
+  }
+}
 
 const isAr = (document.documentElement.lang || '').startsWith('ar');
 const P = isAr ? '/ar' : '';
@@ -45,6 +71,11 @@ const T = isAr
       langSwitch: 'English',
       langSwitchLang: 'en',
       langSwitchDir: 'ltr',
+      themeOriginal: 'الأصلية',
+      themeBlue: 'الأزرق',
+      themeGreen: 'الأخضر',
+      themeMenu: 'الألوان',
+      themeMenuLabel: 'اختر لوحة الألوان',
       fields: [
         ['دخول السوق والوكالة المحلية', 'market-entry'],
         ['تسجيل المنتجات والمناقصات الحكومية', 'regulatory'],
@@ -114,6 +145,11 @@ const T = isAr
       langSwitch: 'العربية',
       langSwitchLang: 'ar',
       langSwitchDir: 'rtl',
+      themeOriginal: 'Original',
+      themeBlue: 'Blue',
+      themeGreen: 'Green',
+      themeMenu: 'Colors',
+      themeMenuLabel: 'Choose a color palette',
       fields: [
         ['Market Entry & Local Agency', 'market-entry'],
         ['Product Registration & Tenders', 'regulatory'],
@@ -179,6 +215,25 @@ if (!document.querySelector('.skip') && main) {
 }
 
 const langSwitchHTML = `<a class="lang-switch" href="${altPath}" lang="${T.langSwitchLang}" dir="${T.langSwitchDir}" hreflang="${T.langSwitchLang}">${T.langSwitch}</a>`;
+const themeLabels = { original: T.themeOriginal, blue: T.themeBlue, green: T.themeGreen };
+const themeLogos = { original: logoUrl, blue: blueLogoUrl, green: greenLogoUrl };
+const activeLogoUrl = themeLogos[activeTheme];
+const themeChoiceHTML = THEME_ORDER.map(
+  (theme) => `
+    <button class="theme-choice" type="button" data-theme-choice="${theme}" aria-pressed="${activeTheme === theme}">
+      <span class="theme-choice-palette theme-choice-palette--${theme}" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span>${themeLabels[theme]}</span>
+    </button>`,
+).join('');
+const themeSwitchHTML = `
+  <div class="theme-menu">
+    <button class="theme-toggle" type="button" data-active-theme="${activeTheme}" aria-expanded="false" aria-haspopup="true">
+      <span class="theme-toggle-palette" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="theme-toggle-label">${T.themeMenu}</span>
+      ${phIcon('caret-down', { className: 'ph-icon--theme-caret', size: 13 })}
+    </button>
+    <div class="theme-options" aria-label="${T.themeMenuLabel}">${themeChoiceHTML}</div>
+  </div>`;
 
 const fieldMenuLinks = T.fields
   .map(
@@ -198,7 +253,7 @@ const header = document.querySelector('#header');
 if (header) {
   header.innerHTML = `
     <a class="brand" href="${P}/">
-      <img src="${logoUrl}" alt="MAS International Care">
+      <img data-theme-logo src="${activeLogoUrl}" alt="MAS International Care">
       <span>INTERNATIONAL CARE</span>
     </a>
     <nav aria-label="Primary navigation">
@@ -218,6 +273,7 @@ if (header) {
       <a href="${P}/about.html">${T.navAbout}</a>
     </nav>
     <div class="nav-actions">
+      ${themeSwitchHTML}
       ${langSwitchHTML}
       <a class="nav-contact" href="${P}/contact.html">${T.navContact}</a>
       <button class="menu-button" aria-expanded="false" aria-label="${T.openMenu}">
@@ -235,7 +291,7 @@ if (mobile) {
     <div class="mobile-menu-shell">
       <header class="mobile-menu-head">
         <a class="mobile-menu-brand" href="${P}/" aria-label="MAS International Care">
-          <img src="${logoUrl}" alt="">
+          <img data-theme-logo src="${activeLogoUrl}" alt="">
           <span><small>${T.menuEyebrow}</small><strong>MAS</strong></span>
         </a>
         <button class="mobile-menu-close" type="button" aria-label="${T.closeMenu}">
@@ -339,7 +395,7 @@ if (footer) {
       <div class="footer-divider"></div>
       <div class="footer-grid">
         <div class="footer-brand">
-          <img src="${logoUrl}" alt="MAS International Care">
+          <img data-theme-logo src="${activeLogoUrl}" alt="MAS International Care">
           <p>${T.footerBrand}</p>
           <div class="footer-markets"><span>KSA</span><span>UAE</span><span>EGY</span><span>SYR</span></div>
         </div>
@@ -369,6 +425,70 @@ if (footer) {
       </div>
     </div>`;
 }
+
+const themeToggle = document.querySelector('.theme-toggle');
+const themeMenu = document.querySelector('.theme-menu');
+const themeOptions = document.querySelector('.theme-options');
+
+const setThemeMenuOpen = (open) => {
+  themeMenu?.classList.toggle('open', open);
+  themeToggle?.setAttribute('aria-expanded', String(open));
+};
+
+const syncThemeUI = () => {
+  themeToggle?.setAttribute('data-active-theme', activeTheme);
+  themeToggle?.setAttribute('aria-label', `${T.themeMenuLabel}: ${themeLabels[activeTheme]}`);
+  themeToggle?.setAttribute('title', `${T.themeMenuLabel}: ${themeLabels[activeTheme]}`);
+
+  themeOptions?.querySelectorAll('[data-theme-choice]').forEach((choice) => {
+    choice.setAttribute('aria-pressed', String(choice.dataset.themeChoice === activeTheme));
+  });
+
+  document.querySelectorAll('[data-theme-logo]').forEach((image) => {
+    image.src = themeLogos[activeTheme];
+  });
+};
+
+const setTheme = (theme) => {
+  activeTheme = theme;
+  document.documentElement.dataset.theme = theme;
+
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+  } catch {
+    // The control remains functional for the current page without storage.
+  }
+
+  const url = new URL(location.href);
+  url.searchParams.set('theme', theme);
+  history.replaceState(null, '', url);
+  syncThemeUI();
+};
+
+themeToggle?.addEventListener('click', () => {
+  setThemeMenuOpen(!themeMenu?.classList.contains('open'));
+});
+
+themeOptions?.addEventListener('click', (event) => {
+  const choice = event.target.closest('[data-theme-choice]');
+  if (!choice) return;
+  setTheme(choice.dataset.themeChoice);
+  setThemeMenuOpen(false);
+  themeToggle?.focus();
+});
+
+document.addEventListener('click', (event) => {
+  if (themeMenu?.contains(event.target)) return;
+  setThemeMenuOpen(false);
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape' || !themeMenu?.classList.contains('open')) return;
+  setThemeMenuOpen(false);
+  themeToggle?.focus();
+});
+
+syncThemeUI();
 
 const maps = T.maps;
 
