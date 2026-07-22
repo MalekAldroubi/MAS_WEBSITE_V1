@@ -74,7 +74,7 @@ Also verify:
 - `http://mascaregroup.com` redirects once to HTTPS.
 - `https://www.mascaregroup.com` redirects once to `https://mascaregroup.com`.
 - Fonts render with no browser-console 404 or MIME errors.
-- The Saudi Arabia, Egypt, and Syria phone links open the dialer and `info@mascaregroup.com` opens the mail client.
+- The Saudi Arabia, Egypt, and Syria links open WhatsApp with a prefilled “Website enquiry” message, and `info@mascaregroup.com` opens the mail client.
 - A contact-form submission succeeds and arrives at `info@mascaregroup.com`.
 - Replying to the enquiry addresses the visitor.
 

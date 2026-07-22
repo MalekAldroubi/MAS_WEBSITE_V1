@@ -74,9 +74,9 @@ const T = isAr
       footerMarkets: 'الأسواق',
       footerAbout: 'من نحن',
       footerColContact: 'تواصل',
-      footerSaudiPhone: 'فريق السعودية',
-      footerEgyptPhone: 'فريق مصر',
-      footerSyriaPhone: 'فريق سوريا',
+      footerSaudiPhone: 'واتساب · فريق السعودية',
+      footerEgyptPhone: 'واتساب · فريق مصر',
+      footerSyriaPhone: 'واتساب · فريق سوريا',
       footerEmail: 'البريد الإلكتروني',
       legalCompanyName: 'شركة ماس إنترناشونال كير',
       legalJurisdiction: 'مسجلة في المملكة العربية السعودية',
@@ -147,9 +147,9 @@ const T = isAr
       footerMarkets: 'Markets',
       footerAbout: 'About MAS',
       footerColContact: 'Contact',
-      footerSaudiPhone: 'Saudi Arabia team',
-      footerEgyptPhone: 'Egypt team',
-      footerSyriaPhone: 'Syria team',
+      footerSaudiPhone: 'WhatsApp · Saudi Arabia',
+      footerEgyptPhone: 'WhatsApp · Egypt',
+      footerSyriaPhone: 'WhatsApp · Syria',
       footerEmail: 'Email us',
       legalCompanyName: 'MAS International Care Company',
       legalJurisdiction: 'Registered in the Kingdom of Saudi Arabia',
@@ -369,16 +369,16 @@ if (footer) {
           <span class="footer-registration">${T.unifiedNumber} <b dir="ltr">7054732784</b></span>
           <span>${T.footerCountries}</span>
           <div class="footer-phone-list">
-            <a href="tel:+966504157675" aria-label="${T.footerSaudiPhone}: +966 50 415 7675">
-              ${phIcon('phone', { className: 'ph-icon--small', size: 16 })}
+            <a href="https://wa.me/966504157675?text=Website%20enquiry%20%E2%80%94%20Saudi%20Arabia" target="_blank" rel="noopener" aria-label="${T.footerSaudiPhone}: +966 50 415 7675">
+              ${phIcon('chat-text', { className: 'ph-icon--small', size: 16 })}
               <span><small>${T.footerSaudiPhone}</small><b dir="ltr">+966 50 415 7675</b></span>
             </a>
-            <a href="tel:+201039180458" aria-label="${T.footerEgyptPhone}: +20 103 918 0458">
-              ${phIcon('phone', { className: 'ph-icon--small', size: 16 })}
+            <a href="https://wa.me/201039180458?text=Website%20enquiry%20%E2%80%94%20Egypt" target="_blank" rel="noopener" aria-label="${T.footerEgyptPhone}: +20 103 918 0458">
+              ${phIcon('chat-text', { className: 'ph-icon--small', size: 16 })}
               <span><small>${T.footerEgyptPhone}</small><b dir="ltr">+20 103 918 0458</b></span>
             </a>
-            <a href="tel:+963933161718" aria-label="${T.footerSyriaPhone}: +963 933 161 718">
-              ${phIcon('phone', { className: 'ph-icon--small', size: 16 })}
+            <a href="https://wa.me/963933161718?text=Website%20enquiry%20%E2%80%94%20Syria" target="_blank" rel="noopener" aria-label="${T.footerSyriaPhone}: +963 933 161 718">
+              ${phIcon('chat-text', { className: 'ph-icon--small', size: 16 })}
               <span><small>${T.footerSyriaPhone}</small><b dir="ltr">+963 933 161 718</b></span>
             </a>
             <a href="mailto:info@mascaregroup.com" aria-label="${T.footerEmail}: info@mascaregroup.com">
