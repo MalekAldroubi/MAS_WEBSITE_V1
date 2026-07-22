@@ -76,6 +76,7 @@ const T = isAr
       footerColContact: 'تواصل',
       footerSaudiPhone: 'فريق السعودية',
       footerEgyptPhone: 'فريق مصر',
+      footerEmail: 'البريد الإلكتروني',
       legalCompanyName: 'شركة ماس إنترناشونال كير',
       legalJurisdiction: 'مسجلة في المملكة العربية السعودية',
       unifiedNumber: 'الرقم الوطني الموحد',
@@ -147,6 +148,7 @@ const T = isAr
       footerColContact: 'Contact',
       footerSaudiPhone: 'Saudi Arabia team',
       footerEgyptPhone: 'Egypt team',
+      footerEmail: 'Email us',
       legalCompanyName: 'MAS International Care Company',
       legalJurisdiction: 'Registered in the Kingdom of Saudi Arabia',
       unifiedNumber: 'Unified National Number',
@@ -372,6 +374,10 @@ if (footer) {
             <a href="tel:+201039180458" aria-label="${T.footerEgyptPhone}: +20 103 918 0458">
               ${phIcon('phone', { className: 'ph-icon--small', size: 16 })}
               <span><small>${T.footerEgyptPhone}</small><b dir="ltr">+20 103 918 0458</b></span>
+            </a>
+            <a href="mailto:info@mascaregroup.com" aria-label="${T.footerEmail}: info@mascaregroup.com">
+              ${phIcon('envelope', { className: 'ph-icon--small', size: 16 })}
+              <span><small>${T.footerEmail}</small><b dir="ltr">info@mascaregroup.com</b></span>
             </a>
           </div>
           <a class="footer-contact-link" href="${P}/contact.html">${phIcon('lock-simple', { className: 'ph-icon--small', size: 16 })}${T.footerEnquiry}</a>
