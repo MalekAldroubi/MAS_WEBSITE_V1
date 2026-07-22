@@ -84,6 +84,7 @@ const T = isAr
       footerCountries: 'السعودية · الإمارات · مصر · سوريا',
       footerEnquiry: 'أرسل رسالة آمنة',
       footerRights: 'جميع الحقوق محفوظة',
+      footerCredit: 'تم بناء الموقع بواسطة seakes.com',
       maps: {
         saudi: ['السعودية', 'تسجيل المنتجات لدى هيئة الغذاء والدواء، منصة اعتماد والمناقصات الحكومية، التصنيع المحلي، والتوزيع في كل المملكة.'],
         uae: ['الإمارات', 'تسجيل المنتجات لدى الجهات الصحية، الانطلاق الإقليمي من دبي، وشركاء التوزيع في الخليج.'],
@@ -157,6 +158,7 @@ const T = isAr
       footerCountries: 'Saudi Arabia · UAE · Egypt · Syria',
       footerEnquiry: 'Send a secure enquiry',
       footerRights: 'All rights reserved',
+      footerCredit: 'Website built by seakes.com',
       maps: {
         saudi: ['Saudi Arabia', 'SFDA product registration, Etimad and government tenders, local manufacturing, and nationwide distribution.'],
         uae: ['United Arab Emirates', 'Health-authority registration, regional launch from Dubai, and Gulf distribution partners.'],
@@ -391,7 +393,10 @@ if (footer) {
       </div>
       <div class="footer-bottom">
         <span>© 2026 MAS INTERNATIONAL CARE</span>
-        <div><span>${T.footerRights}</span></div>
+        <div>
+          <span>${T.footerRights}</span>
+          <a class="footer-credit" href="https://seakes.com" target="_blank" rel="noopener noreferrer" aria-label="${T.footerCredit}">${T.footerCredit}</a>
+        </div>
       </div>
     </div>`;
 }
