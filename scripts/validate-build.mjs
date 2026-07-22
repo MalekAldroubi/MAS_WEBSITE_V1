@@ -102,11 +102,52 @@ const sitemapPath = join(root, 'sitemap.xml')
 if (existsSync(sitemapPath)) {
   const sitemap = readFileSync(sitemapPath, 'utf8')
   const locations = new Set([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]))
+  const urlEntries = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => match[1])
+
+  if (/<(?:priority|changefreq)>/i.test(sitemap)) fail('Sitemap contains priority/changefreq values that Google ignores')
+  if (!sitemap.includes('xmlns:xhtml="http://www.w3.org/1999/xhtml"')) fail('Sitemap is missing the hreflang namespace')
+
   for (const canonical of pageCanonicals) {
     if (!locations.has(canonical)) fail(`Sitemap is missing ${canonical}`)
   }
   for (const location of locations) {
     if (!pageCanonicals.has(location)) fail(`Sitemap URL has no built page: ${location}`)
+  }
+
+  for (const entry of urlEntries) {
+    const location = entry.match(/<loc>([^<]+)<\/loc>/)?.[1]
+    if (!location) {
+      fail('Sitemap URL entry is missing loc')
+      continue
+    }
+
+    const alternates = new Map([...entry.matchAll(/<xhtml:link\s+rel="alternate"\s+hreflang="([^"]+)"\s+href="([^"]+)"\s*\/>/g)]
+      .map((match) => [match[1], match[2]]))
+    const path = new URL(location).pathname
+    const english = path.startsWith('/ar/') ? `https://mascaregroup.com${path.slice(3) || '/'}` : location
+    const arabic = path.startsWith('/ar/') ? location : `https://mascaregroup.com${path === '/' ? '/ar/' : `/ar${path}`}`
+
+    if (alternates.get('en') !== english) fail(`${location}: incorrect English hreflang`)
+    if (alternates.get('ar') !== arabic) fail(`${location}: incorrect Arabic hreflang`)
+    if (alternates.get('x-default') !== english) fail(`${location}: incorrect x-default hreflang`)
+
+    const lastModified = entry.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1]
+    if (!lastModified || !/^\d{4}-\d{2}-\d{2}$/.test(lastModified)) fail(`${location}: missing or invalid lastmod`)
+    if (lastModified && lastModified > new Date().toISOString().slice(0, 10)) fail(`${location}: lastmod is in the future`)
+
+    for (const imageLocation of [...entry.matchAll(/<image:loc>([^<]+)<\/image:loc>/g)].map((match) => match[1])) {
+      if (!imageLocation.startsWith('https://mascaregroup.com/')) fail(`${location}: image sitemap URL uses an unexpected origin`)
+      const imagePath = join(root, new URL(imageLocation).pathname.slice(1))
+      if (!existsSync(imagePath)) fail(`${location}: image sitemap asset does not exist: ${imageLocation}`)
+    }
+  }
+}
+
+const robotsPath = join(root, 'robots.txt')
+if (existsSync(robotsPath)) {
+  const robots = readFileSync(robotsPath, 'utf8')
+  if (!/^Sitemap:\s+https:\/\/mascaregroup\.com\/sitemap\.xml\s*$/mi.test(robots)) {
+    fail('robots.txt does not advertise the canonical sitemap URL')
   }
 }
 
