@@ -19,7 +19,7 @@ if (!existsSync(root)) {
 const files = walk(root)
 const htmlFiles = files.filter((file) => extname(file) === '.html')
 const required = [
-  '.htaccess', 'robots.txt', 'sitemap.xml', 'site.webmanifest', 'favicon.ico',
+  '.htaccess', 'robots.txt', 'sitemap.xml', 'site.webmanifest', 'favicon.svg', 'favicon.ico',
   'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png',
   'android-chrome-192x192.png', 'android-chrome-512x512.png', 'og-image.png',
   'api/contact.php', 'assets/icons/phosphor.svg',

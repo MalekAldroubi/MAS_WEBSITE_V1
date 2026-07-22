@@ -30,6 +30,7 @@ const seoPlugin = () => ({
       const alternates = languagePaths(path, isArabic)
       const tags = [
         { tag: 'link', attrs: { rel: 'canonical', href: canonical }, injectTo: 'head' },
+        { tag: 'link', attrs: { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }, injectTo: 'head' },
         { tag: 'link', attrs: { rel: 'icon', href: '/favicon.ico', sizes: 'any' }, injectTo: 'head' },
         { tag: 'link', attrs: { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' }, injectTo: 'head' },
         { tag: 'link', attrs: { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' }, injectTo: 'head' },
