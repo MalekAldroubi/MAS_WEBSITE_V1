@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
-import { readdirSync } from 'fs'
+import { readdirSync, rmSync } from 'fs'
 
 const SITE_ORIGIN = 'https://mascaregroup.com'
 
@@ -73,6 +73,14 @@ const seoPlugin = () => ({
   },
 })
 
+const deploymentCleanupPlugin = () => ({
+  name: 'mas-deployment-cleanup',
+  closeBundle() {
+    rmSync(resolve(__dirname, 'dist/.DS_Store'), { force: true })
+    rmSync(resolve(__dirname, 'dist/assets/.DS_Store'), { force: true })
+  },
+})
+
 const pages = (dir, prefix) => Object.fromEntries(
   readdirSync(resolve(__dirname, dir))
     .filter((file) => file.endsWith('.html'))
@@ -80,7 +88,7 @@ const pages = (dir, prefix) => Object.fromEntries(
 )
 
 export default defineConfig({
-  plugins: [seoPlugin()],
+  plugins: [seoPlugin(), deploymentCleanupPlugin()],
   build: {
     rollupOptions: {
       input: {

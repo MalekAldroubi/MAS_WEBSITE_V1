@@ -76,6 +76,7 @@ const T = isAr
       footerColContact: 'تواصل',
       footerSaudiPhone: 'فريق السعودية',
       footerEgyptPhone: 'فريق مصر',
+      footerSyriaPhone: 'فريق سوريا',
       footerEmail: 'البريد الإلكتروني',
       legalCompanyName: 'شركة ماس إنترناشونال كير',
       legalJurisdiction: 'مسجلة في المملكة العربية السعودية',
@@ -148,6 +149,7 @@ const T = isAr
       footerColContact: 'Contact',
       footerSaudiPhone: 'Saudi Arabia team',
       footerEgyptPhone: 'Egypt team',
+      footerSyriaPhone: 'Syria team',
       footerEmail: 'Email us',
       legalCompanyName: 'MAS International Care Company',
       legalJurisdiction: 'Registered in the Kingdom of Saudi Arabia',
@@ -374,6 +376,10 @@ if (footer) {
             <a href="tel:+201039180458" aria-label="${T.footerEgyptPhone}: +20 103 918 0458">
               ${phIcon('phone', { className: 'ph-icon--small', size: 16 })}
               <span><small>${T.footerEgyptPhone}</small><b dir="ltr">+20 103 918 0458</b></span>
+            </a>
+            <a href="tel:+963933161718" aria-label="${T.footerSyriaPhone}: +963 933 161 718">
+              ${phIcon('phone', { className: 'ph-icon--small', size: 16 })}
+              <span><small>${T.footerSyriaPhone}</small><b dir="ltr">+963 933 161 718</b></span>
             </a>
             <a href="mailto:info@mascaregroup.com" aria-label="${T.footerEmail}: info@mascaregroup.com">
               ${phIcon('envelope', { className: 'ph-icon--small', size: 16 })}

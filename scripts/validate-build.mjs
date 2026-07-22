@@ -18,6 +18,11 @@ if (!existsSync(root)) {
 
 const files = walk(root)
 const htmlFiles = files.filter((file) => extname(file) === '.html')
+
+for (const file of files) {
+  if (file.endsWith('.DS_Store')) fail(`macOS metadata must not be deployed: ${relative(root, file)}`)
+}
+
 const required = [
   '.htaccess', 'robots.txt', 'sitemap.xml', 'site.webmanifest', 'favicon.svg', 'favicon.ico',
   'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png',
