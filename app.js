@@ -74,6 +74,8 @@ const T = isAr
       footerMarkets: 'الأسواق',
       footerAbout: 'من نحن',
       footerColContact: 'تواصل',
+      footerSaudiPhone: 'فريق السعودية',
+      footerEgyptPhone: 'فريق مصر',
       legalCompanyName: 'شركة ماس إنترناشونال كير',
       legalJurisdiction: 'مسجلة في المملكة العربية السعودية',
       unifiedNumber: 'الرقم الوطني الموحد',
@@ -143,6 +145,8 @@ const T = isAr
       footerMarkets: 'Markets',
       footerAbout: 'About MAS',
       footerColContact: 'Contact',
+      footerSaudiPhone: 'Saudi Arabia team',
+      footerEgyptPhone: 'Egypt team',
       legalCompanyName: 'MAS International Care Company',
       legalJurisdiction: 'Registered in the Kingdom of Saudi Arabia',
       unifiedNumber: 'Unified National Number',
@@ -360,6 +364,16 @@ if (footer) {
           <span>${T.legalJurisdiction}</span>
           <span class="footer-registration">${T.unifiedNumber} <b dir="ltr">7054732784</b></span>
           <span>${T.footerCountries}</span>
+          <div class="footer-phone-list">
+            <a href="tel:+966504157675" aria-label="${T.footerSaudiPhone}: +966 50 415 7675">
+              ${phIcon('phone', { className: 'ph-icon--small', size: 16 })}
+              <span><small>${T.footerSaudiPhone}</small><b dir="ltr">+966 50 415 7675</b></span>
+            </a>
+            <a href="tel:+201039180458" aria-label="${T.footerEgyptPhone}: +20 103 918 0458">
+              ${phIcon('phone', { className: 'ph-icon--small', size: 16 })}
+              <span><small>${T.footerEgyptPhone}</small><b dir="ltr">+20 103 918 0458</b></span>
+            </a>
+          </div>
           <a class="footer-contact-link" href="${P}/contact.html">${phIcon('lock-simple', { className: 'ph-icon--small', size: 16 })}${T.footerEnquiry}</a>
         </div>
       </div>

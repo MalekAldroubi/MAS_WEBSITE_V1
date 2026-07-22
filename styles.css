@@ -626,3 +626,20 @@ h1,h2,.cta h2{font-family:"Cormorant Garamond",Georgia,serif}
 @media(prefers-reduced-motion:reduce){
   .mobile-menu,.mobile-menu>.mobile-menu-shell,.mobile-menu *{scroll-behavior:auto;transition-duration:.01ms!important}
 }
+
+/* Local phone contacts */
+.footer-phone-list{width:100%;display:grid;gap:7px;margin-top:7px}
+.footer-phone-list>a{min-height:44px;display:flex;align-items:center;gap:9px;padding:7px 10px;border:1px solid rgba(222,197,159,.2);border-radius:10px;color:#fff;transition:border-color .18s,background .18s}
+.footer-phone-list>a:hover{border-color:rgba(222,197,159,.48);background:rgba(255,255,255,.05)}
+.footer-phone-list>a>.ph-icon{flex:0 0 auto;color:var(--sand)}
+.footer-phone-list>a>span{display:flex;min-width:0;flex-direction:column}
+.footer-phone-list small{color:#8f8178;font-size:9px}
+.footer-phone-list b{font-size:12px;font-weight:600;letter-spacing:.02em}
+.contact-direct-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}
+.contact-direct-list .contact-direct{width:100%;margin-top:0;transition:transform .18s,box-shadow .18s}
+.contact-direct-list .contact-direct:hover{transform:translateY(-2px);box-shadow:0 22px 50px rgba(10,6,3,.23)}
+.contact-direct-list .contact-direct-action{margin-inline-start:8px;margin-left:0}
+
+@media(max-width:650px){
+  .contact-direct-list{grid-template-columns:minmax(0,1fr)}
+}
