@@ -1,58 +1,81 @@
-# Namecheap Stellar Plus deployment
+# Namecheap production deployment — mascaregroup.com
 
-The website is a Vite static build with one PHP endpoint at `/api/contact.php`. The PHP endpoint validates Cloudflare Turnstile before sending a contact email through the hosting account.
+The uploadable website is generated in `dist/` and includes static HTML, self-hosted fonts, SVG/WebP assets, favicons, SEO files, Apache rules, and one PHP contact endpoint. Upload the **contents** of `dist/`, not the source repository.
 
-## 1. Set up the contact mailbox
+## 1. Prepare the Namecheap account
 
-In cPanel, create a real mailbox on the website domain, such as `website@example.com`. This is the address the PHP endpoint uses in its `From` header. The visitor's email is used only as `Reply-To`.
+1. In cPanel → **Domains**, confirm the document root for `mascaregroup.com`. For a primary domain it is normally `public_html`; an addon domain may use a different folder.
+2. In cPanel → **Email Accounts**, create `info@mascaregroup.com` if it does not already exist.
+3. In cPanel → **Email Deliverability**, repair/install SPF and DKIM. Add a DMARC record after mail delivery is confirmed.
+4. In **Namecheap SSL**, wait for the certificate to become Active and enable **HTTPS Redirect**. The packaged `.htaccess` deliberately does not duplicate this control-panel redirect.
+5. In cPanel → **Select PHP Version**, use PHP 8.2 or newer and enable `curl` and `mbstring`.
 
-Use cPanel's **Email Deliverability** screen to install or copy the SPF and DKIM records. Add DMARC as well. If the domain uses Cloudflare or another external DNS provider, copy the Namecheap MX, SPF, DKIM, and DMARC records into that DNS provider rather than changing them only in cPanel.
+## 2. Configure Cloudflare Turnstile
 
-## 2. Create the Turnstile widget
+Create a Turnstile widget that allows both:
 
-1. Create a Cloudflare Turnstile widget for the production domain and its `www` hostname if both are used.
-2. Copy `.env.example` to `.env.production.local`.
-3. Put the public Turnstile site key in `.env.production.local`:
+- `mascaregroup.com`
+- `www.mascaregroup.com`
+
+Copy `.env.example` to `.env.production.local` on the development computer and set the public browser key:
 
 ```text
 VITE_TURNSTILE_SITE_KEY=your_real_site_key
 ```
 
-The site key is public. Never put the Turnstile secret in a Vite environment variable or anywhere inside `public_html`.
+Never put the Turnstile secret in a Vite variable or in `public_html`.
 
-## 3. Add the private server configuration
-
-Copy `hosting/mas-contact-config.example.php`, fill in the real values, and upload it as:
+Copy `hosting/mas-contact-config.example.php`, add the real secret, and upload the completed file to:
 
 ```text
 /home/CPANEL_USERNAME/mas-contact-config.php
 ```
 
-That location is one level above `public_html`. Do not upload the real configuration file into the website directory.
+This private file must sit one level above the website document root. Recommended production values are already shown in the example:
 
-Use a real mailbox on the hosted domain for `from_email`. `recipient_email` can be the same mailbox or another address where enquiries should arrive. List every production hostname allowed by the Turnstile widget in `expected_hostnames`.
+```php
+'expected_hostnames' => ['mascaregroup.com', 'www.mascaregroup.com'],
+'recipient_email' => 'info@mascaregroup.com',
+'from_email' => 'info@mascaregroup.com',
+```
 
-## 4. Build and upload
-
-Run locally:
+## 3. Build and validate locally
 
 ```bash
 npm install
-npm run build
+npm run build:deploy
 ```
 
-Upload the **contents** of `dist/` into `public_html/`. Confirm that the deployed PHP file exists at `public_html/api/contact.php`.
+The validation checks every built page for one H1, title, description, canonical URL, social metadata, favicons, internal asset references, SVG symbols, font files, and sitemap coverage.
 
-In cPanel's **Select PHP Version** screen, use PHP 8.2 or newer and make sure the `curl` extension is enabled. The endpoint uses cURL to verify every Turnstile token before sending mail.
+## 4. Upload the prepared archive
 
-Enable the free SSL certificate in cPanel and force HTTPS after the domain resolves to the hosting account.
+1. In cPanel → **File Manager**, open the domain document root.
+2. Click **Settings** and enable **Show Hidden Files (dotfiles)** so `.htaccess` remains visible.
+3. Back up any current live files before replacing them.
+4. Upload `release/mascaregroup-namecheap.zip`.
+5. Extract the archive directly into the document root.
+6. Confirm `index.html`, `.htaccess`, `robots.txt`, `sitemap.xml`, `fonts/`, `assets/`, and `api/` are directly inside the document root—not inside an extra `dist` folder.
+7. Use permissions `644` for files and `755` for directories. The private config above `public_html` should be `600` where supported.
 
-## 5. Test
+## 5. Production checks
 
-Submit the production contact form once and confirm all three outcomes:
+Open these URLs after DNS and SSL are active:
 
-- The browser shows the success message.
-- The enquiry arrives at `recipient_email`.
-- Replying to that message addresses the visitor, not the website mailbox.
+- `https://mascaregroup.com/`
+- `https://mascaregroup.com/ar/`
+- `https://mascaregroup.com/robots.txt`
+- `https://mascaregroup.com/sitemap.xml`
+- `https://mascaregroup.com/favicon.ico`
+- A deliberately missing URL, which should show the branded 404 page and return HTTP 404.
 
-If the form says it is not configured, confirm the private file name and location. If the form succeeds but the message is missing, check cPanel's mail routing, Email Deliverability records, and the recipient's spam folder.
+Also verify:
+
+- `http://mascaregroup.com` redirects once to HTTPS.
+- `https://www.mascaregroup.com` redirects once to `https://mascaregroup.com`.
+- Fonts render with no browser-console 404 or MIME errors.
+- The Saudi and Egypt phone links open the dialer and `info@mascaregroup.com` opens the mail client.
+- A contact-form submission succeeds and arrives at `info@mascaregroup.com`.
+- Replying to the enquiry addresses the visitor.
+
+Finally, submit `https://mascaregroup.com/sitemap.xml` to Google Search Console and Bing Webmaster Tools. Keep the apex domain (`mascaregroup.com`) as the canonical property.

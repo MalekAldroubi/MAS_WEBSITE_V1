@@ -1,4 +1,4 @@
-import logoUrl from './assets/mas-logo.svg';
+import logoUrl from './assets/mas-logo-transparent.png';
 
 const isAr = (document.documentElement.lang || '').startsWith('ar');
 const P = isAr ? '/ar' : '';
@@ -204,7 +204,7 @@ const header = document.querySelector('#header');
 if (header) {
   header.innerHTML = `
     <a class="brand" href="${P}/">
-      <img src="${logoUrl}" alt="MAS International Care">
+      <img src="${logoUrl}" width="72" height="64" alt="MAS International Care">
       <span>INTERNATIONAL CARE</span>
     </a>
     <nav aria-label="Primary navigation">
@@ -241,7 +241,7 @@ if (mobile) {
     <div class="mobile-menu-shell">
       <header class="mobile-menu-head">
         <a class="mobile-menu-brand" href="${P}/" aria-label="MAS International Care">
-          <img src="${logoUrl}" alt="">
+          <img src="${logoUrl}" width="62" height="56" alt="">
           <span><small>${T.menuEyebrow}</small><strong>MAS</strong></span>
         </a>
         <button class="mobile-menu-close" type="button" aria-label="${T.closeMenu}">
@@ -345,7 +345,7 @@ if (footer) {
       <div class="footer-divider"></div>
       <div class="footer-grid">
         <div class="footer-brand">
-          <img src="${logoUrl}" alt="MAS International Care">
+          <img src="${logoUrl}" width="82" height="82" alt="MAS International Care">
           <p>${T.footerBrand}</p>
           <div class="footer-markets"><span>KSA</span><span>UAE</span><span>EGY</span><span>SYR</span></div>
         </div>
