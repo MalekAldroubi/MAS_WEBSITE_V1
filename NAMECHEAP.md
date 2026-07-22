@@ -67,6 +67,7 @@ Open these URLs after DNS and SSL are active:
 - `https://mascaregroup.com/robots.txt`
 - `https://mascaregroup.com/sitemap.xml`
 - `https://mascaregroup.com/favicon.ico`
+- `https://mascaregroup.com/card/ceo/`
 - A deliberately missing URL, which should show the branded 404 page and return HTTP 404.
 
 Also verify:
@@ -75,6 +76,7 @@ Also verify:
 - `https://www.mascaregroup.com` redirects once to `https://mascaregroup.com`.
 - Fonts render with no browser-console 404 or MIME errors.
 - The Saudi Arabia, Egypt, and Syria links open WhatsApp with a prefilled “Website enquiry” message, and `info@mascaregroup.com` opens the mail client.
+- The Executive Office card opens cleanly on mobile and its “Save contact” button downloads `contact.vcf`.
 - A contact-form submission succeeds and arrives at `info@mascaregroup.com`.
 - Replying to the enquiry addresses the visitor.
 

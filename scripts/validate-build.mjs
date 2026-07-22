@@ -66,9 +66,11 @@ for (const file of htmlFiles) {
 
   const canonical = html.match(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i)?.[1]
     || html.match(/<link[^>]+href=["']([^"']+)["'][^>]+rel=["']canonical["']/i)?.[1]
+  const isNoIndex = /<meta\s+name=["']robots["'][^>]+content=["'][^"']*noindex/i.test(html)
+    || /<meta\s+content=["'][^"']*noindex[^"']*["'][^>]+name=["']robots["']/i.test(html)
   if (canonical) {
     if (!canonical.startsWith('https://mascaregroup.com/')) fail(`${label}: canonical uses an unexpected origin`)
-    if (label !== '404.html') pageCanonicals.add(canonical)
+    if (label !== '404.html' && !isNoIndex) pageCanonicals.add(canonical)
   }
 
   for (const match of html.matchAll(/\b(?:href|src|action)=["']([^"']+)["']/gi)) {

@@ -5,13 +5,12 @@ import { readdirSync, rmSync } from 'fs'
 const SITE_ORIGIN = 'https://mascaregroup.com'
 
 const canonicalPath = (path) => {
-  if (path === '/index.html') return '/'
-  if (path === '/ar/index.html') return '/ar/'
+  if (path.endsWith('/index.html')) return path.slice(0, -10) || '/'
   return path
 }
 
 const languagePaths = (path, isArabic) => {
-  if (path === '/404.html') return null
+  if (path === '/404.html' || path.startsWith('/card/')) return null
   const english = isArabic ? (path.replace(/^\/ar(?=\/)/, '') || '/') : path
   const arabic = isArabic ? path : `/ar${path === '/' ? '/' : path}`
   return { english, arabic }
@@ -87,6 +86,12 @@ const pages = (dir, prefix) => Object.fromEntries(
     .map((file) => [`${prefix}-${file.replace('.html', '')}`, resolve(__dirname, dir, file)])
 )
 
+const cardPages = () => Object.fromEntries(
+  readdirSync(resolve(__dirname, 'card'), { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => [`card-${entry.name}`, resolve(__dirname, 'card', entry.name, 'index.html')])
+)
+
 export default defineConfig({
   plugins: [seoPlugin(), deploymentCleanupPlugin()],
   build: {
@@ -101,6 +106,7 @@ export default defineConfig({
         ...pages('fields', 'field'),
         ...pages('ar', 'ar'),
         ...pages('ar/fields', 'ar-field'),
+        ...cardPages(),
       },
     },
   },
